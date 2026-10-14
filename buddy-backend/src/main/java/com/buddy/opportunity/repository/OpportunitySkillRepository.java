@@ -12,8 +12,9 @@ public interface OpportunitySkillRepository
 
     List<OpportunitySkill> findBySkillId(Long skillId);
 
-    List<OpportunitySkill> findByOpportunityIdAndIsRequired(
-        Long opportunityId,
-        boolean required
+    List<OpportunitySkill> findByOpportunityIdAndRequired(
+            Long opportunityId,
+            boolean required
     );
+
 }
