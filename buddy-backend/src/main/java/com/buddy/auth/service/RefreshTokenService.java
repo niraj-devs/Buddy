@@ -1,5 +1,7 @@
 package com.buddy.auth.service;
 
+import com.buddy.auth.exception.InvalidRefreshTokenException;
+
 import com.buddy.auth.entity.RefreshToken;
 import com.buddy.auth.entity.User;
 import com.buddy.auth.repository.RefreshTokenRepository;
@@ -78,8 +80,7 @@ public class RefreshTokenService {
 
     private RefreshToken validate(String rawToken, boolean lockForUpdate) {
         if (rawToken == null || rawToken.isBlank()) {
-            throw new IllegalArgumentException(
-                    "Refresh token is required");
+            throw new InvalidRefreshTokenException("Refresh token is required");
         }
 
         String tokenHash = hashToken(rawToken);
@@ -87,21 +88,18 @@ public class RefreshTokenService {
         RefreshToken storedToken = (lockForUpdate
                 ? refreshTokenRepository.findByTokenHashForUpdate(tokenHash)
                 : refreshTokenRepository.findByTokenHash(tokenHash))
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "Invalid refresh token"));
+                .orElseThrow(() -> new InvalidRefreshTokenException("Invalid refresh token"));
 
         if (storedToken.isRevoked()) {
-            throw new IllegalArgumentException(
-                    "Refresh token has been revoked");
+            throw new InvalidRefreshTokenException("Refresh token has been revoked");
         }
 
         if (!storedToken.getExpiresAt().isAfter(LocalDateTime.now())) {
-            throw new IllegalArgumentException(
-                    "Refresh token has expired");
+            throw new InvalidRefreshTokenException("Refresh token has expired");
         }
 
         if (!storedToken.getUser().isEnabled()) {
-            throw new IllegalArgumentException("Account is disabled");
+            throw new InvalidRefreshTokenException("Account is disabled");
         }
 
         return storedToken;
@@ -121,5 +119,14 @@ public class RefreshTokenService {
             throw new IllegalStateException(
                     "SHA-256 is unavailable", exception);
         }
+
+
+    }
+    @Transactional
+    public void revokeRefreshToken(String rawToken) {
+        RefreshToken storedToken = validateRefreshTokenForUpdate(rawToken);
+
+        storedToken.setRevoked(true);
+        refreshTokenRepository.saveAndFlush(storedToken);
     }
 }
