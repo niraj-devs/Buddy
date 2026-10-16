@@ -42,7 +42,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 try {
                     Claims claims = jwtService.validateAndParse(token);
 
-                    String userId = claims.getSubject();
+                    String email = claims.get("email", String.class);
+
+                    if (email == null || email.isBlank()) {
+                        throw new IllegalArgumentException(
+                                "JWT email claim is missing");
+                    }
+
                     Object roleClaim = claims.get("roles");
 
                     List<?> roles = roleClaim instanceof List<?> list
@@ -58,7 +64,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
-                                    userId, null, authorities);
+                                    email, null, authorities);
 
                     authentication.setDetails(claims.get("email"));
 
