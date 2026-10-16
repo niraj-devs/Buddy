@@ -38,3 +38,5 @@ build/
 # Local backups and debugging logs
 *.bak
 buddy-security-debug.log
+
+buddy-debug.log
