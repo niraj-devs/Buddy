@@ -4,6 +4,9 @@ import com.buddy.auth.dto.LoginRequest;
 import com.buddy.auth.dto.LoginResponse;
 import com.buddy.auth.dto.RegisterRequest;
 import com.buddy.auth.dto.RegisterResponse;
+import com.buddy.auth.exception.DuplicateEmailException;
+import com.buddy.auth.exception.InvalidCredentialsException;
+import org.springframework.security.authentication.BadCredentialsException;
 import com.buddy.auth.entity.Role;
 import com.buddy.auth.entity.User;
 import com.buddy.auth.repository.RoleRepository;
@@ -46,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
     public RegisterResponse register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("Email is already registered");
+            throw new DuplicateEmailException("Email is already registered");
         }
 
         String passwordHash = passwordEncoder.encode(request.getPassword());
@@ -80,12 +83,19 @@ public class AuthServiceImpl implements AuthService {
     @Transactional
     public LoginResponse login(LoginRequest request) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.email(),
-                        request.password()
-                )
-        );
+        Authentication authentication;
+
+        try {
+            authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.email(),
+                            request.password()
+                    )
+            );
+        } catch (BadCredentialsException exception) {
+            throw new InvalidCredentialsException(
+                    "Invalid email or password");
+        }
 
         User user = userRepository.findByEmail(authentication.getName())
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -123,4 +133,12 @@ public class AuthServiceImpl implements AuthService {
                 jwtService.getAccessTokenTtlSeconds()
         );
     }
+
+    @Override
+    @Transactional
+    public void logout(String refreshToken) {
+        refreshTokenService.revokeRefreshToken(refreshToken);
+    }
 }
+
+
