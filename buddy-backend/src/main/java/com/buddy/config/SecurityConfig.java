@@ -29,7 +29,9 @@ public class SecurityConfig {
                                 "/api/auth/register",
                                 "/api/auth/login",
                                 "/api/auth/refresh",
-                                "/actuator/health"
+                                "/api/auth/logout",
+                                "/actuator/health",
+                                "/error"
                         ).permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(
