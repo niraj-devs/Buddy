@@ -32,6 +32,12 @@ public class JwtService {
             );
         }
 
+        if (accessTokenTtlSeconds <= 0) {
+            throw new IllegalArgumentException(
+                    "Access token TTL must be greater than zero."
+            );
+        }
+
         this.signingKey = Keys.hmacShaKeyFor(keyBytes);
         this.accessTokenTtlSeconds = accessTokenTtlSeconds;
     }
