@@ -155,6 +155,24 @@ public class AcademicService {
                 .toList();
     }
 
+
+    @Transactional(readOnly = true)
+    public List<TopicResponse> getPrerequisitesByTopic(Long topicId) {
+        com.buddy.academic.entity.Topic topic = topicRepository.findById(topicId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Topic not found"
+                ));
+
+        return topic.getPrerequisites()
+                .stream()
+                .map(prerequisite -> new TopicResponse(
+                        prerequisite.getId(),
+                        prerequisite.getTitle(),
+                        prerequisite.getDescription(),
+                        prerequisite.getSequenceNumber()
+                ))
+                .toList();
+    }
     @Transactional(readOnly = true)
     public List<TopicResourceResponse> getResourcesByTopic(Long topicId) {
         if (!topicRepository.existsById(topicId)) {

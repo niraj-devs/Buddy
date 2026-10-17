@@ -8,4 +8,6 @@ import java.util.List;
 public interface TopicRepository extends JpaRepository<Topic, Long> {
 
     List<Topic> findByUnitIdOrderBySequenceNumber(Long unitId);
+
+    List<Topic> findByPrerequisitesId(Long prerequisiteTopicId);
 }

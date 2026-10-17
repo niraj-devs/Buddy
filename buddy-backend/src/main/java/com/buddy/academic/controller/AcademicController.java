@@ -65,6 +65,13 @@ public class AcademicController {
         return academicService.getTopicsByUnit(unitId);
     }
 
+
+    @GetMapping("/topics/{topicId}/prerequisites")
+    public List<TopicResponse> getPrerequisitesByTopic(
+            @PathVariable Long topicId
+    ) {
+        return academicService.getPrerequisitesByTopic(topicId);
+    }
     @GetMapping("/topics/{topicId}/resources")
     public List<TopicResourceResponse> getResourcesByTopic(
             @PathVariable Long topicId
