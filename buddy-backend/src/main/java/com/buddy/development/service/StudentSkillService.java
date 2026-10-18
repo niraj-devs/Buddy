@@ -38,6 +38,7 @@ public class StudentSkillService {
     private final RoadmapSkillRepository roadmapSkillRepository;
     private final UserRepository userRepository;
     private final StudentRepository studentRepository;
+    private final SkillUnlockService skillUnlockService;
 
     public StudentSkillService(
             StudentSkillRepository studentSkillRepository,
@@ -45,7 +46,8 @@ public class StudentSkillService {
             RoadmapRepository roadmapRepository,
             RoadmapSkillRepository roadmapSkillRepository,
             UserRepository userRepository,
-            StudentRepository studentRepository
+            StudentRepository studentRepository,
+            SkillUnlockService skillUnlockService
     ) {
         this.studentSkillRepository = studentSkillRepository;
         this.skillRepository = skillRepository;
@@ -53,8 +55,8 @@ public class StudentSkillService {
         this.roadmapSkillRepository = roadmapSkillRepository;
         this.userRepository = userRepository;
         this.studentRepository = studentRepository;
+        this.skillUnlockService = skillUnlockService;
     }
-
     @Transactional(readOnly = true)
     public List<StudentSkillResponse> getMySkills(String email) {
         Student student = findStudentByEmail(email);
@@ -87,6 +89,13 @@ public class StudentSkillService {
                         HttpStatus.NOT_FOUND,
                         "Skill not found"
                 ));
+
+        if (!skillUnlockService.isSkillUnlocked(student.getId(), skillId)) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Skill is locked. Complete its prerequisites first."
+            );
+        }
 
         StudentSkill studentSkill = studentSkillRepository
                 .findByStudentIdAndSkillId(student.getId(), skillId)
