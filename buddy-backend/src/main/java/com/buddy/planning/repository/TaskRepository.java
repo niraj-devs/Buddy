@@ -21,4 +21,9 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
         Long studentId,
         LocalDate date
     );
+
+    java.util.Optional<Task> findByIdAndStudentId(
+        Long taskId,
+        Long studentId
+    );
 }
