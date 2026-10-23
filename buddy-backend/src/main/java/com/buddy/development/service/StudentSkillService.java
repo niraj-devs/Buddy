@@ -61,9 +61,51 @@ public class StudentSkillService {
     public List<StudentSkillResponse> getMySkills(String email) {
         Student student = findStudentByEmail(email);
 
-        return studentSkillRepository.findByStudentId(student.getId())
+        Roadmap roadmap = roadmapRepository.findAll()
                 .stream()
-                .map(this::mapToResponse)
+                .filter(Roadmap::isActive)
+                .filter(candidate -> candidate.getCareerPath().getId()
+                        .equals(student.getCareerPath().getId()))
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "No active roadmap found for your career path"
+                ));
+
+        Map<Long, StudentSkill> progressBySkillId = new HashMap<>();
+
+        for (StudentSkill studentSkill :
+                studentSkillRepository.findByStudentId(student.getId())) {
+            progressBySkillId.put(
+                    studentSkill.getSkill().getId(),
+                    studentSkill
+            );
+        }
+
+        return roadmapSkillRepository
+                .findByRoadmapIdOrderBySequenceOrder(roadmap.getId())
+                .stream()
+                .map(roadmapSkill -> {
+                    Skill skill = roadmapSkill.getSkill();
+
+                    StudentSkill progress =
+                            progressBySkillId.get(skill.getId());
+
+                    if (progress != null) {
+                        return mapToResponse(progress);
+                    }
+
+                    return new StudentSkillResponse(
+                            skill.getId(),
+                            skill.getName(),
+                            skill.getCategory(),
+                            NOT_STARTED,
+                            BigDecimal.ZERO.setScale(2),
+                            null,
+                            null,
+                            null
+                    );
+                })
                 .toList();
     }
 

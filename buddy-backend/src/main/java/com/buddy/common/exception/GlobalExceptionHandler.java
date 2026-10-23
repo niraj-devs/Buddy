@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
 import java.util.Map;
@@ -89,6 +90,27 @@ public class GlobalExceptionHandler {
                         "status", HttpStatus.UNAUTHORIZED.value(),
                         "error", "Unauthorized",
                         "message", exception.getMessage()
+                ));
+    }
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, Object>> handleResponseStatusException(
+            ResponseStatusException exception) {
+
+        HttpStatus status = HttpStatus.valueOf(
+                exception.getStatusCode().value()
+        );
+
+        String message = exception.getReason() != null
+                ? exception.getReason()
+                : status.getReasonPhrase();
+
+        return ResponseEntity
+                .status(status)
+                .body(Map.of(
+                        "timestamp", Instant.now().toString(),
+                        "status", status.value(),
+                        "error", status.getReasonPhrase(),
+                        "message", message
                 ));
     }
 }
