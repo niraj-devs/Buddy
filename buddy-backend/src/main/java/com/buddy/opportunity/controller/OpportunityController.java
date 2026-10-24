@@ -1,9 +1,13 @@
 package com.buddy.opportunity.controller;
 
 import com.buddy.opportunity.dto.OpportunityEligibilityResponse;
+import com.buddy.opportunity.dto.OpportunityRecommendationFeedResponse;
 import com.buddy.opportunity.dto.OpportunityResponse;
+import com.buddy.opportunity.dto.OpportunitySkillMatchResponse;
 import com.buddy.opportunity.service.OpportunityEligibilityService;
+import com.buddy.opportunity.service.OpportunityRecommendationService;
 import com.buddy.opportunity.service.OpportunityService;
+import com.buddy.opportunity.service.OpportunitySkillMatchService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +19,19 @@ public class OpportunityController {
 
     private final OpportunityService opportunityService;
     private final OpportunityEligibilityService eligibilityService;
+    private final OpportunitySkillMatchService skillMatchService;
+    private final OpportunityRecommendationService recommendationService;
 
     public OpportunityController(
             OpportunityService opportunityService,
-            OpportunityEligibilityService eligibilityService
+            OpportunityEligibilityService eligibilityService,
+            OpportunitySkillMatchService skillMatchService,
+            OpportunityRecommendationService recommendationService
     ) {
         this.opportunityService = opportunityService;
         this.eligibilityService = eligibilityService;
+        this.skillMatchService = skillMatchService;
+        this.recommendationService = recommendationService;
     }
 
     @GetMapping
@@ -33,6 +43,15 @@ public class OpportunityController {
         }
 
         return opportunityService.getActiveOpportunitiesByType(type);
+    }
+
+    @GetMapping("/recommendations")
+    public OpportunityRecommendationFeedResponse getRecommendations(
+            Authentication authentication
+    ) {
+        return recommendationService.getRecommendations(
+                authentication.getName()
+        );
     }
 
     @GetMapping("/{id}")
@@ -48,6 +67,17 @@ public class OpportunityController {
             Authentication authentication
     ) {
         return eligibilityService.checkEligibility(
+                authentication.getName(),
+                id
+        );
+    }
+
+    @GetMapping("/{id}/skill-match")
+    public OpportunitySkillMatchResponse matchSkills(
+            @PathVariable Long id,
+            Authentication authentication
+    ) {
+        return skillMatchService.matchSkills(
                 authentication.getName(),
                 id
         );

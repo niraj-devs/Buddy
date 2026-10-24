@@ -35,6 +35,17 @@ public class AdminOpportunityController {
         return adminOpportunityService.createOpportunity(request);
     }
 
+    @PutMapping("/{opportunityId}")
+    public OpportunityResponse updateOpportunity(
+            @PathVariable Long opportunityId,
+            @Valid @RequestBody OpportunityCreateRequest request
+    ) {
+        return adminOpportunityService.updateOpportunity(
+                opportunityId,
+                request
+        );
+    }
+
     @PutMapping("/{opportunityId}/skills")
     public List<OpportunitySkillResponse> replaceOpportunitySkills(
             @PathVariable Long opportunityId,

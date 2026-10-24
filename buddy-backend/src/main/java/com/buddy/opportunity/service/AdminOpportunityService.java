@@ -41,6 +41,39 @@ public class AdminOpportunityService {
     public OpportunityResponse createOpportunity(
             OpportunityCreateRequest request
     ) {
+        validateOpportunityRequest(request);
+
+        Opportunity opportunity = new Opportunity();
+        applyRequest(opportunity, request);
+        opportunity.setActive(true);
+
+        Opportunity saved = opportunityRepository.save(opportunity);
+        return toResponse(saved);
+    }
+
+    @Transactional
+    public OpportunityResponse updateOpportunity(
+            Long opportunityId,
+            OpportunityCreateRequest request
+    ) {
+        validateOpportunityRequest(request);
+
+        Opportunity opportunity = opportunityRepository
+                .findById(opportunityId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Opportunity not found"
+                ));
+
+        applyRequest(opportunity, request);
+
+        Opportunity saved = opportunityRepository.save(opportunity);
+        return toResponse(saved);
+    }
+
+    private void validateOpportunityRequest(
+            OpportunityCreateRequest request
+    ) {
         String type = request.opportunityType().trim().toUpperCase();
 
         if (!ALLOWED_TYPES.contains(type)) {
@@ -50,10 +83,9 @@ public class AdminOpportunityService {
             );
         }
 
-        String workMode = null;
-
-        if (request.workMode() != null && !request.workMode().isBlank()) {
-            workMode = request.workMode().trim().toUpperCase();
+        if (request.workMode() != null
+                && !request.workMode().isBlank()) {
+            String workMode = request.workMode().trim().toUpperCase();
 
             if (!ALLOWED_WORK_MODES.contains(workMode)) {
                 throw new ResponseStatusException(
@@ -62,37 +94,46 @@ public class AdminOpportunityService {
                 );
             }
         }
+    }
 
-        Opportunity opportunity = new Opportunity();
+    private void applyRequest(
+            Opportunity opportunity,
+            OpportunityCreateRequest request
+    ) {
         opportunity.setTitle(request.title().trim());
         opportunity.setOrganization(request.organization().trim());
         opportunity.setDescription(request.description());
-        opportunity.setOpportunityType(type);
+        opportunity.setOpportunityType(
+                request.opportunityType().trim().toUpperCase()
+        );
         opportunity.setLocation(request.location());
-        opportunity.setWorkMode(workMode);
+        opportunity.setWorkMode(
+                request.workMode() == null || request.workMode().isBlank()
+                        ? null
+                        : request.workMode().trim().toUpperCase()
+        );
         opportunity.setMinCgpa(request.minCgpa());
         opportunity.setTargetGradYear(request.targetGradYear());
         opportunity.setApplicationUrl(request.applicationUrl());
         opportunity.setDeadline(request.deadline());
-        opportunity.setActive(true);
+    }
 
-        Opportunity saved = opportunityRepository.save(opportunity);
-
+    private OpportunityResponse toResponse(Opportunity opportunity) {
         return new OpportunityResponse(
-                saved.getId(),
-                saved.getTitle(),
-                saved.getOrganization(),
-                saved.getDescription(),
-                saved.getOpportunityType(),
-                saved.getLocation(),
-                saved.getWorkMode(),
-                saved.getMinCgpa(),
-                saved.getTargetGradYear(),
-                saved.getApplicationUrl(),
-                saved.getDeadline(),
-                saved.isActive(),
-                saved.getCreatedAt(),
-                saved.getUpdatedAt()
+                opportunity.getId(),
+                opportunity.getTitle(),
+                opportunity.getOrganization(),
+                opportunity.getDescription(),
+                opportunity.getOpportunityType(),
+                opportunity.getLocation(),
+                opportunity.getWorkMode(),
+                opportunity.getMinCgpa(),
+                opportunity.getTargetGradYear(),
+                opportunity.getApplicationUrl(),
+                opportunity.getDeadline(),
+                opportunity.isActive(),
+                opportunity.getCreatedAt(),
+                opportunity.getUpdatedAt()
         );
     }
 }
