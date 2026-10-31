@@ -1,0 +1,145 @@
+﻿@import "tailwindcss";
+/* =================================
+   1. GLOBAL DESIGN VARIABLES
+================================= */
+
+:root {
+    font-family: Inter, Arial, sans-serif;
+
+    color: #142b52;
+    background-color: #ffffff;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --color-primary: #3478f6;
+    --color-primary-hover: #2463d8;
+
+    --color-heading: #142b52;
+    --color-text: #52627a;
+    --color-background: #ffffff;
+    --color-surface: #f5f8ff;
+    --color-border: #e5ebf5;
+
+    --container-width: 1200px;
+}
+
+/* =================================
+   2. BOX MODEL RESET
+================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+/* =================================
+   3. BODY RESET*/
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.app-with-navbar {
+    padding-top: 80px;
+}
+
+.app-with-navbar {
+    padding-top: 80px;
+}
+
+.app-fullscreen {
+    padding-top: 0;
+    min-height: 100vh;
+}
+
+/* =================================
+   4. ROOT APPLICATION
+================================= */
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* =================================
+   5. DEFAULT ELEMENTS
+================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-heading);
+    line-height: 1.2;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+/* =================================
+   6. IMAGE DEFAULTS
+================================= */
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* =================================
+   7. ACCESSIBILITY
+================================= */
+
+::selection {
+    color: #ffffff;
+    background-color: var(--color-primary);
+}
+
+:focus-visible {
+    outline-color: var(--color-primary);
+    outline-offset: 3px;
+}

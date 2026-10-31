@@ -13,3 +13,52 @@ application-local.properties
 # OS
 .DS_Store
 Thumbs.db
+
+# Local application configuration
+**/src/main/resources/application.properties
+**/src/main/resources/application-*.properties
+**/src/main/resources/application-*.yml
+**/src/main/resources/application-*.yaml
+
+# Environment and private credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.jks
+
+# Temporary reviews and exports
+*-review.txt
+*-audit.txt
+*-architecture-review.txt
+buddy-code-review.txt
+sidebar-code.txt
+
+# Local backups
+*.bak
+*.backup
+*.bak.*
+*.before-*
+*backup*/
+*recovery*/
+
+# Frontend build and dependencies
+**/node_modules/
+**/dist/
+**/dist-ssr/
+
+# Logs and local artifacts
+*.log
+*.tmp
+*.temp
+
+
+# Duplicate source directory at repository root
+/src/
+
+# Additional local backup files
+*.priorities-backup
+*.quick-access-backup

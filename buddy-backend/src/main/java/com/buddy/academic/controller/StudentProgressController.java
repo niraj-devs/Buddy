@@ -1,5 +1,6 @@
 package com.buddy.academic.controller;
 
+import com.buddy.academic.dto.progress.AcademicProgressSummaryResponse;
 import com.buddy.academic.dto.progress.TopicProgressResponse;
 import com.buddy.academic.dto.progress.TopicUnlockResponse;
 import com.buddy.academic.dto.progress.UpdateTopicProgressRequest;
@@ -57,6 +58,14 @@ public class StudentProgressController {
         );
     }
 
+    @GetMapping("/me/summary")
+    public AcademicProgressSummaryResponse getAcademicProgressSummary(
+            Authentication authentication
+    ) {
+        return studentProgressService.getAcademicProgressSummary(
+                authentication.getName()
+        );
+    }
     @GetMapping("/me")
     public List<TopicProgressResponse> getMyProgress(
             Authentication authentication

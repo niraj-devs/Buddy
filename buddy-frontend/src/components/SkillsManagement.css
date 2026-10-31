@@ -1,0 +1,157 @@
+/* Buddy Skills Management — Warm Coffee / Peach Theme */
+.skills-management {
+  --skill-cream: #fff8ed;
+  --skill-peach: #f9daa4;
+  --skill-sand: #d1b27c;
+  --skill-caramel: #b88556;
+  --skill-copper: #b4682e;
+  --skill-terracotta: #9e3e14;
+  --skill-espresso: #6e3c1b;
+  --skill-ink: #382315;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 48px clamp(20px, 5vw, 80px);
+  background: linear-gradient(180deg, var(--skill-cream) 0%, var(--skill-peach) 35%, var(--skill-sand) 72%, var(--skill-caramel) 100%);
+  color: var(--skill-ink);
+}
+.skills-management *, .skills-management *::before, .skills-management *::after { box-sizing: border-box; }
+.skills-management h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 38px); font-weight: 750; color: var(--skill-espresso); }
+.skills-management > p { margin: 0 0 32px; color: #69482e; line-height: 1.6; }
+.skills-management .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 22px; }
+.skills-management .skill-card {
+  display: flex; flex-direction: column; gap: 12px; min-width: 0;
+  padding: 26px; border: 1px solid #d1b27c; border-radius: 18px;
+  background: linear-gradient(145deg, #fff8ed 0%, #f9daa4 100%);
+  box-shadow: 0 6px 22px rgba(110, 60, 27, .11);
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+.skills-management .skill-card:nth-child(3n + 2) { background: linear-gradient(145deg, #f9daa4 0%, #e9c58e 100%); }
+.skills-management .skill-card:nth-child(3n) { background: linear-gradient(145deg, #f5d6a4 0%, #d1b27c 100%); }
+.skills-management .skill-card:hover { transform: translateY(-4px); border-color: var(--skill-copper); box-shadow: 0 14px 30px rgba(110, 60, 27, .19); }
+.skills-management .skill-card h3 { margin: 0; font-size: 18px; line-height: 1.4; color: var(--skill-espresso); overflow-wrap: anywhere; }
+.skills-management .skill-card p { margin: 0; font-size: 13px; line-height: 1.6; color: #58381f; overflow-wrap: anywhere; }
+.skills-management .skill-card progress { display: block; width: 100%; height: 11px; overflow: hidden; border: 0; border-radius: 999px; accent-color: var(--skill-copper); background: #f5e4c9; }
+.skills-management .skill-card progress::-webkit-progress-bar { background: #f5e4c9; border-radius: 999px; }
+.skills-management .skill-card progress::-webkit-progress-value { background: linear-gradient(90deg, var(--skill-copper), var(--skill-terracotta)); border-radius: 999px; }
+.skills-management .skill-card progress::-moz-progress-bar { background: var(--skill-terracotta); border-radius: 999px; }
+.skills-management .skill-card > div { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(110, 60, 27, .22); }
+.skills-management .skill-card label { font-size: 12px; font-weight: 700; color: var(--skill-espresso); }
+.skills-management .skill-card input { width: 100%; min-height: 43px; padding: 11px 13px; border: 1px solid var(--skill-caramel); border-radius: 9px; background: #fffaf2; color: var(--skill-ink); font: inherit; }
+.skills-management .skill-card input:focus-visible { outline: 3px solid rgba(180, 104, 46, .32); outline-offset: 2px; border-color: var(--skill-terracotta); }
+.skills-management .skill-card button { min-height: 43px; padding: 12px; border: 1px solid var(--skill-espresso); border-radius: 9px; background: var(--skill-espresso); color: #fff; font: inherit; font-weight: 700; cursor: pointer; transition: background 200ms ease, transform 200ms ease; }
+.skills-management .skill-card button:hover:not(:disabled) { background: var(--skill-terracotta); border-color: var(--skill-terracotta); transform: translateY(-1px); }
+.skills-management .skill-card button:focus-visible { outline: 3px solid var(--skill-copper); outline-offset: 3px; }
+.skills-management .skill-card button:disabled, .skills-management .skill-card input:disabled { opacity: .65; cursor: not-allowed; }
+.skills-management .skill-card button:disabled { background: #84674e; border-color: #84674e; }
+.skills-management .skill-card input:disabled { background: #f1e3cf; color: #5c4938; }
+.skills-management [role="alert"] { color: #922e1b; font-weight: 650; }
+.skills-management .back-to-dashboard { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; margin-bottom: 22px; border: 1px solid var(--skill-caramel); border-radius: 12px; background: var(--skill-peach); color: var(--skill-espresso); font-weight: 700; text-decoration: none; transition: background 200ms ease, transform 200ms ease; }
+.skills-management .back-to-dashboard:hover { background: var(--skill-espresso); color: #fff; transform: translateX(-3px); }
+.skills-management .back-to-dashboard:focus-visible { outline: 3px solid var(--skill-copper); outline-offset: 3px; }
+@media (max-width: 600px) { .skills-management { padding: 24px 16px; } .skills-management .skills-grid { gap: 16px; } .skills-management .skill-card { padding: 20px; } }
+@media (prefers-reduced-motion: reduce) { .skills-management .skill-card, .skills-management .skill-card button, .skills-management .back-to-dashboard { transition: none; } }
+
+/* Green action buttons */
+.skills-management .skill-card button {
+    background: #237B4B;
+    color: #FFFFFF;
+}
+
+.skills-management .skill-card button:hover:not(:disabled) {
+    background: #17643A;
+}
+
+/* Green progress bars */
+.skills-management .skill-card progress {
+    accent-color: #2BA665;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.skills-management .skill-card progress::-webkit-progress-bar {
+    background: #E2F6E9;
+    border-radius: 999px;
+}
+
+.skills-management .skill-card progress::-webkit-progress-value {
+    background: #2BA665;
+    border-radius: 999px;
+}
+
+.skills-management .skill-card progress::-moz-progress-bar {
+    background: #2BA665;
+    border-radius: 999px;
+}
+
+
+/* Keep completed skills green */
+.skills-management .skill-card button:disabled {
+    background: #237B4B;
+    color: #FFFFFF;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+/* Keep 100% progress green */
+.skills-management .skill-card progress {
+    accent-color: #2BA665;
+    opacity: 1;
+}
+
+.skills-management .skill-card progress::-webkit-progress-value {
+    background: #2BA665;
+}
+
+.skills-management .skill-card progress::-moz-progress-bar {
+    background: #2BA665;
+}
+
+
+/* Locked skills — faded green buttons */
+.skills-management .skill-card button:disabled {
+    background: #237B4B;
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Completed skills — solid green buttons */
+.skills-management .skill-card:has(progress[value="100"]) button:disabled {
+    background: #237B4B;
+    opacity: 1;
+}
+
+
+/* Vertical color progression across the Skills grid */
+.skills-management .skills-grid {
+    background: linear-gradient(
+        to bottom,
+        #F9DAA4 0%,
+        #D1B27C 25%,
+        #B88556 50%,
+        #B4682E 75%,
+        #9E3E14 100%
+    );
+    border-radius: 20px;
+    padding: 12px;
+}
+
+/* Transparent cards reveal the vertical gradient */
+.skills-management .skills-grid .skill-card {
+    background: transparent;
+    backdrop-filter: none;
+}
+
+
+/* Softer vertical gradient — 1% lighter */
+.skills-management .skills-grid {
+    background: linear-gradient(
+        to bottom,
+        #F9DAA5 0%,
+        #D1B27D 25%,
+        #B98658 50%,
+        #B56930 75%,
+        #9F3F16 100%
+    );
+}

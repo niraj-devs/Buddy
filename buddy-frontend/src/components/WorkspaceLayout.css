@@ -1,0 +1,58 @@
+/* Shared Buddy workspace shell */
+.buddy-workspace-shell {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.buddy-workspace-rail {
+    position: relative;
+    z-index: 10;
+    min-width: 0;
+    background: #f0f4fa;
+    border-right: 1px solid #e1e7ef;
+}
+
+.buddy-workspace-content {
+    min-width: 0;
+    width: 100%;
+}
+
+.buddy-workspace-content > * {
+    min-width: 0;
+}
+
+/* Reset legacy workspace spacing overrides */
+.buddy-workspace-content :is(
+    .dashboard-page,
+    .academic-management,
+    .skills-management,
+    .explore-page,
+    .student-profile-page,
+    .settings-page
+) {
+    padding-left: revert-layer;
+}
+
+/* Place the MENU inside its own rail */
+.buddy-workspace-rail .workspace-menu-toggle {
+    position: sticky !important;
+    top: 96px;
+    left: auto !important;
+    margin: 16px auto;
+    width: 56px;
+    height: 58px;
+}
+
+@media (max-width: 700px) {
+    .buddy-workspace-shell {
+        grid-template-columns: 62px minmax(0, 1fr);
+    }
+
+    .buddy-workspace-rail .workspace-menu-toggle {
+        width: 50px;
+        height: 54px;
+        top: 88px;
+    }
+}

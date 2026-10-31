@@ -85,6 +85,21 @@ public class Student {
     @Column(name = "graduation_year", nullable = false)
     private Short graduationYear;
 
+    @Column(name = "bio", length = 500)
+    private String bio;
+
+    @Column(name = "profile_picture_url", length = 2048)
+    private String profilePictureUrl;
+
+    @Column(name = "linkedin_url", length = 2048)
+    private String linkedinUrl;
+
+    @Column(name = "github_url", length = 2048)
+    private String githubUrl;
+
+    @Column(name = "portfolio_url", length = 2048)
+    private String portfolioUrl;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

@@ -1,0 +1,738 @@
+﻿.goal-management {
+    width: 100%;
+    padding: 28px;
+    color: #173d2a;
+}
+
+.goal-page-heading {
+    margin-bottom: 28px;
+}
+
+.goal-eyebrow {
+    color: #298b55;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.goal-page-heading h1 {
+    margin: 8px 0;
+    font-size: 30px;
+}
+
+.goal-page-heading p {
+    color: #6b8072;
+}
+
+.goal-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.goal-stat-card,
+.goal-card,
+.goal-empty-state {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #dcece0;
+    border-radius: 16px;
+}
+
+.goal-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-stat-card span {
+    color: #6b8072;
+    font-size: 13px;
+}
+
+.goal-stat-card strong {
+    font-size: 30px;
+    color: #174b32;
+}
+
+.goal-list-section h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.goal-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.goal-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.goal-type,
+.goal-status {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #edf8f0;
+    color: #267b49;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.goal-card h3 {
+    margin-bottom: 10px;
+}
+
+.goal-card p {
+    color: #6b8072;
+    font-size: 14px;
+}
+
+.goal-card-footer {
+    margin-top: 20px;
+    color: #298b55;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.goal-empty-state {
+    text-align: center;
+    padding: 48px 20px;
+}
+
+.goal-error {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: #fff1f1;
+    color: #a12c2c;
+}
+
+@media (max-width: 900px) {
+    .goal-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .goal-management {
+        padding: 16px;
+    }
+
+    .goal-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.goal-page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.goal-create-button,
+.goal-form-actions button[type="submit"] {
+    border: none;
+    border-radius: 10px;
+    background: #24864c;
+    color: white;
+    padding: 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.goal-create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    padding: 24px;
+    margin-bottom: 28px;
+    background: white;
+    border: 1px solid #dcece0;
+    border-radius: 16px;
+}
+
+.goal-create-form label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.goal-create-form input,
+.goal-create-form textarea,
+.goal-create-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cdded1;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.goal-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.goal-form-actions button {
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.goal-form-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.goal-status-select {
+    max-width: 160px;
+    padding: 7px 10px;
+    border: 1px solid #cde7d4;
+    border-radius: 8px;
+    background: #edf8f0;
+    color: #267b49;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.goal-status-select:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.goal-edit-button {
+    margin-top: 18px;
+    padding: 9px 14px;
+    border: 1px solid #b9dcc5;
+    border-radius: 9px;
+    background: #f0faf3;
+    color: #267b49;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.goal-edit-button:hover {
+    background: #e0f3e6;
+}
+
+.goal-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.goal-card-actions .goal-edit-button {
+    margin-top: 0;
+}
+
+.goal-delete-button {
+    padding: 9px 14px;
+    border: 1px solid #f0c6c6;
+    border-radius: 9px;
+    background: #fff3f3;
+    color: #b42323;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.goal-delete-button:hover:not(:disabled) {
+    background: #ffe4e4;
+}
+
+.goal-card-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.milestone-section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #dcece0;
+}
+
+.milestone-toggle {
+    border: none;
+    background: transparent;
+    color: #24864c;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 6px 0;
+}
+
+.milestone-content {
+    margin-top: 14px;
+}
+
+.milestone-content > p {
+    color: #6b8072;
+    font-size: 13px;
+}
+
+.milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.milestone-item {
+    padding: 14px;
+    border: 1px solid #e0ece3;
+    border-radius: 10px;
+    background: #f8fcf9;
+}
+
+.milestone-item-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.milestone-item-heading strong {
+    font-size: 13px;
+}
+
+.milestone-item p {
+    margin-bottom: 8px;
+}
+
+.milestone-item small {
+    color: #6b8072;
+}
+
+/* Milestone creation form */
+
+.milestone-add-button {
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    border: 1px solid #b8dec5;
+    border-radius: 8px;
+    background: #effaf2;
+    color: #237a45;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.milestone-add-button:hover {
+    background: #e1f4e7;
+}
+
+.milestone-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #dcece0;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.milestone-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #334b3c;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.milestone-form input,
+.milestone-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #d4e3d9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #263a2d;
+    font: inherit;
+}
+
+.milestone-form input:focus,
+.milestone-form textarea:focus {
+    outline: 2px solid #86c99c;
+    outline-offset: 1px;
+}
+
+.milestone-save-button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #24864c;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.milestone-save-button:hover:not(:disabled) {
+    background: #1c6b3c;
+}
+
+.milestone-save-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Milestone status dropdown */
+
+.milestone-status-select {
+    padding: 7px 10px;
+    border: 1px solid #c9dfd0;
+    border-radius: 8px;
+    background: #effaf2;
+    color: #237a45;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.milestone-status-select:hover:not(:disabled) {
+    border-color: #24864c;
+}
+
+.milestone-status-select:focus-visible {
+    outline: 2px solid #86c99c;
+    outline-offset: 2px;
+}
+
+.milestone-status-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Milestone status dropdown */
+
+.milestone-status-select {
+    padding: 7px 10px;
+    border: 1px solid #c9dfd0;
+    border-radius: 8px;
+    background: #effaf2;
+    color: #237a45;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.milestone-status-select:hover:not(:disabled) {
+    border-color: #24864c;
+}
+
+.milestone-status-select:focus-visible {
+    outline: 2px solid #86c99c;
+    outline-offset: 2px;
+}
+
+.milestone-status-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Milestone action buttons */
+
+.milestone-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.milestone-edit-button {
+    padding: 7px 14px;
+    border: 1px solid #c9dfd0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #237a45;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.milestone-edit-button:hover:not(:disabled) {
+    background: #effaf2;
+    border-color: #24864c;
+}
+
+.milestone-edit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Milestone delete button */
+
+.milestone-delete-button {
+    padding: 7px 14px;
+    border: 1px solid #f1c7c7;
+    border-radius: 8px;
+    background: #fff5f5;
+    color: #c0392b;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.milestone-delete-button:hover:not(:disabled) {
+    background: #ffe6e6;
+    border-color: #d9534f;
+}
+
+.milestone-delete-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.milestone-delete-button:focus-visible {
+    outline: 2px solid #d9534f;
+    outline-offset: 2px;
+}
+
+/* Tasks nested inside milestones */
+
+.task-section {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e0ece3;
+}
+
+.task-toggle {
+    padding: 6px 0;
+    border: none;
+    background: transparent;
+    color: #24864c;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.task-toggle:hover {
+    color: #185d34;
+}
+
+.task-toggle:focus-visible {
+    outline: 2px solid #86c99c;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.task-content {
+    margin-top: 12px;
+}
+
+.task-content > p {
+    font-size: 12px;
+    color: #6b8072;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 12px;
+    border: 1px solid #e2ebe5;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.task-item-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.task-item-heading strong {
+    font-size: 12px;
+    color: #263a2d;
+}
+
+.task-item-heading span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #24864c;
+}
+
+.task-item p {
+    margin: 0;
+    font-size: 12px;
+    color: #52675a;
+}
+
+.task-item small {
+    font-size: 11px;
+    color: #6b8072;
+}
+
+/* Milestone Task Creation Form */
+
+.task-add-button {
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    border: 1px solid #b9ddc5;
+    border-radius: 7px;
+    background: #f0faf3;
+    color: #24864c;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.task-add-button:hover {
+    background: #e1f4e7;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #dcebe1;
+    border-radius: 10px;
+    background: #f8fcf9;
+}
+
+.task-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #344b3b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.task-form input,
+.task-form textarea,
+.task-form select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #d4e3d9;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #263a2d;
+    font: inherit;
+    font-weight: 400;
+}
+
+.task-form input:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+    outline: 2px solid #86c99c;
+    outline-offset: 1px;
+}
+
+.task-save-button {
+    align-self: flex-start;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 7px;
+    background: #24864c;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.task-save-button:hover:not(:disabled) {
+    background: #185d34;
+}
+
+.task-save-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Task Status Dropdown */
+
+.task-status-select {
+    padding: 7px 10px;
+    border: 1px solid #cfe5d5;
+    border-radius: 7px;
+    background: #f0faf3;
+    color: #24864c;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.task-status-select:hover {
+    border-color: #86c99c;
+}
+
+.task-status-select:focus-visible {
+    outline: 2px solid #86c99c;
+    outline-offset: 2px;
+}
+
+/* Task Edit Button */
+
+.task-edit-button {
+    align-self: flex-start;
+    padding: 6px 12px;
+    border: 1px solid #cfe5d5;
+    border-radius: 6px;
+    background: #f0faf3;
+    color: #24864c;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.task-edit-button:hover:not(:disabled) {
+    background: #e1f4e7;
+}
+
+.task-edit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Delete Task Button */
+
+.task-delete-button {
+    align-self: flex-start;
+    padding: 6px 12px;
+    border: 1px solid #f2c5c5;
+    border-radius: 6px;
+    background: #fff5f5;
+    color: #c53030;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.task-delete-button:hover {
+    background: #fee2e2;
+    border-color: #e57373;
+}
+
+.task-delete-button:focus-visible {
+    outline: 2px solid #c53030;
+    outline-offset: 2px;
+}

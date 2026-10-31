@@ -108,7 +108,10 @@ public class AuthServiceImpl implements AuthService {
                 accessToken,
                 refreshToken,
                 "Bearer",
-                jwtService.getAccessTokenTtlSeconds()
+                jwtService.getAccessTokenTtlSeconds(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail()
         );
     }
 
@@ -130,7 +133,10 @@ public class AuthServiceImpl implements AuthService {
                 newAccessToken,
                 newRefreshToken,
                 "Bearer",
-                jwtService.getAccessTokenTtlSeconds()
+                jwtService.getAccessTokenTtlSeconds(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail()
         );
     }
 

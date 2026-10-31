@@ -1,4 +1,5 @@
-package com.buddy.student.dto;
+
+        package com.buddy.student.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,7 +19,15 @@ public record StudentProfileResponse(
         String rollNumber,
         BigDecimal cgpa,
         Short graduationYear,
+        String bio,
+        String profilePictureUrl,
+        String linkedinUrl,
+        String githubUrl,
+        String portfolioUrl,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt
+        LocalDateTime updatedAt,
+        Long collegeId,
+        Long branchId,
+        Long semesterId
 ) {
 }

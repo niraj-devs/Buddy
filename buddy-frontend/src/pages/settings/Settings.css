@@ -1,0 +1,295 @@
+
+/* ==============================
+   Buddy Settings Page
+================================ */
+
+.settings-page {
+    --settings-bg: #f7f9fc;
+    --settings-card: #ffffff;
+    --settings-text: #172033;
+    --settings-muted: #687386;
+    --settings-border: #e4e9f1;
+    --settings-accent: #3478f6;
+    --settings-accent-soft: #edf4ff;
+
+    min-height: 75vh;
+    padding: 48px 7% 80px;
+    background: var(--settings-bg);
+    color: var(--settings-text);
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Header */
+
+.settings-header {
+    max-width: 900px;
+    margin: 0 auto 32px;
+}
+
+.settings-header h1 {
+    margin: 0 0 10px;
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.settings-header p {
+    margin: 0;
+    color: var(--settings-muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Settings Cards */
+
+.settings-card {
+    max-width: 900px;
+    margin: 0 auto 22px;
+    padding: 26px;
+    background: var(--settings-card);
+    border: 1px solid var(--settings-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(20, 35, 60, 0.035);
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.2s ease;
+}
+
+.settings-card-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.settings-card-heading > svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--settings-accent);
+}
+
+.settings-card-heading h2 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.settings-card-heading p {
+    margin: 0;
+    color: var(--settings-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Appearance Options */
+
+.settings-theme-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.settings-theme-option {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 76px;
+    padding: 18px;
+    border: 1px solid var(--settings-border);
+    border-radius: 12px;
+    background: var(--settings-card);
+    color: var(--settings-text);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.settings-theme-option > svg {
+    flex-shrink: 0;
+    color: var(--settings-muted);
+}
+
+.settings-theme-option:hover {
+    border-color: var(--settings-accent);
+    transform: translateY(-2px);
+}
+
+.settings-theme-option:focus-visible,
+.settings-profile-link:focus-visible {
+    outline: 3px solid var(--settings-accent);
+    outline-offset: 3px;
+}
+
+.settings-theme-option.selected {
+    border-color: var(--settings-accent);
+    background: var(--settings-accent-soft);
+}
+
+.settings-theme-option.selected > svg {
+    color: var(--settings-accent);
+}
+
+.theme-check {
+    margin-left: auto;
+    color: var(--settings-accent);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Account Information */
+
+.settings-account-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--settings-border);
+}
+
+.settings-account-info span {
+    color: var(--settings-muted);
+    font-size: 14px;
+}
+
+.settings-account-info strong {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Profile Shortcut */
+
+.settings-profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.settings-profile-card .settings-card-heading {
+    margin-bottom: 0;
+}
+
+.settings-profile-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid var(--settings-accent);
+    border-radius: 9px;
+    background: var(--settings-accent);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.settings-profile-link:hover {
+    background: #2465db;
+    transform: translateY(-1px);
+}
+
+/* ==============================
+   Dark Mode
+   Scoped to Settings Page
+================================ */
+
+html[data-buddy-theme="dark"] .settings-page {
+    --settings-bg: #10141d;
+    --settings-card: #191f2b;
+    --settings-text: #edf2fa;
+    --settings-muted: #a0adbf;
+    --settings-border: #30394a;
+    --settings-accent: #79a8ff;
+    --settings-accent-soft: #222f47;
+}
+
+html[data-buddy-theme="dark"] .settings-theme-option.selected {
+    background: var(--settings-accent-soft);
+}
+
+html[data-buddy-theme="dark"] .settings-profile-link {
+    color: #10141d;
+}
+
+html[data-buddy-theme="dark"] .settings-profile-link:hover {
+    background: #a0c0ff;
+}
+
+/* ==============================
+   Responsive Layout
+================================ */
+
+@media (max-width: 640px) {
+    .settings-page {
+        padding: 32px 18px 56px;
+    }
+
+    .settings-header {
+        margin-bottom: 24px;
+    }
+
+    .settings-card {
+        padding: 20px;
+        margin-bottom: 16px;
+        border-radius: 13px;
+    }
+
+    .settings-theme-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .settings-theme-option {
+        min-height: 64px;
+        padding: 15px;
+    }
+
+    .settings-profile-card {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .settings-profile-link {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .settings-page *,
+    .settings-page *::before,
+    .settings-page *::after {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+
+.settings-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--settings-accent);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.settings-back-link:hover {
+    text-decoration: underline;
+}

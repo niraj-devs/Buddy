@@ -1,5 +1,6 @@
 package com.buddy.academic.service;
 
+import com.buddy.academic.dto.progress.AcademicProgressSummaryResponse;
 import com.buddy.academic.dto.progress.TopicProgressResponse;
 import com.buddy.academic.dto.progress.TopicUnlockResponse;
 import com.buddy.academic.entity.StudentTopicProgress;
@@ -223,6 +224,39 @@ public class StudentProgressService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public AcademicProgressSummaryResponse getAcademicProgressSummary(String email) {
+        Student student = findStudentByEmail(email);
+
+        List<Topic> topics = topicRepository
+                .findByUnitSubjectSemesterId(student.getSemester().getId());
+
+        long totalTopics = topics.size();
+
+        java.util.Set<Long> semesterTopicIds = topics.stream()
+                .map(Topic::getId)
+                .collect(java.util.stream.Collectors.toSet());
+
+        long completedTopics = progressRepository
+                .findByStudentId(student.getId())
+                .stream()
+                .filter(progress -> COMPLETED.equals(progress.getStatus()))
+                .filter(progress -> semesterTopicIds.contains(
+                        progress.getTopic().getId()))
+                .count();
+
+        BigDecimal percentage = totalTopics == 0
+                ? BigDecimal.ZERO
+                : BigDecimal.valueOf(completedTopics * 100)
+                        .divide(BigDecimal.valueOf(totalTopics), 2,
+                                java.math.RoundingMode.HALF_UP);
+
+        return new AcademicProgressSummaryResponse(
+                totalTopics,
+                completedTopics,
+                percentage
+        );
+    }
     private StudentTopicProgress findOrCreateProgress(
             Student student,
             Topic topic

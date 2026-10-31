@@ -77,6 +77,25 @@ public class TaskService {
         return mapToResponse(taskRepository.save(task));
     }
 
+    @Transactional
+    public TaskResponse createPersonalTask(
+            String email,
+            CreateTaskRequest request
+    ) {
+        Student student = findStudentByEmail(email);
+
+        Task task = new Task();
+        task.setStudent(student);
+        task.setMilestone(null);
+        task.setTitle(request.title().trim());
+        task.setDescription(request.description());
+        task.setPriority(normalizeAndValidatePriority(request.priority()));
+        task.setDueDate(request.dueDate());
+        task.setStatus(TODO);
+
+        return mapToResponse(taskRepository.save(task));
+    }
+
     @Transactional(readOnly = true)
     public List<TaskResponse> getTasksByMilestone(
             String email,
@@ -242,7 +261,9 @@ public class TaskService {
     private TaskResponse mapToResponse(Task task) {
         return new TaskResponse(
                 task.getId(),
-                task.getMilestone().getId(),
+                task.getMilestone() != null
+                        ? task.getMilestone().getId()
+                        : null,
                 task.getStudent().getId(),
                 task.getTitle(),
                 task.getDescription(),

@@ -1,0 +1,516 @@
+
+/* =========================================
+   BUDDY COMPACT PREMIUM FOOTER
+========================================= */
+
+.pf {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 30px 6% 16px;
+  background:
+    radial-gradient(
+      ellipse at 15% 40%,
+      rgba(21, 63, 150, 0.12),
+      transparent 42%
+    ),
+    #03050b;
+  color: #f4f7ff;
+  font-family: inherit;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.pf *,
+.pf *::before,
+.pf *::after {
+  box-sizing: border-box;
+}
+
+.pf__inner {
+  position: relative;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* Background glow */
+
+.pf__glow {
+  position: absolute;
+  z-index: -1;
+  top: -100px;
+  left: 10%;
+  width: 280px;
+  height: 200px;
+  background: #1649bd;
+  filter: blur(110px);
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+/* Main layout */
+
+.pf__top {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.9fr;
+  align-items: center;
+  gap: 35px;
+  min-height: 235px;
+}
+
+/* Brand */
+
+.pf__brand {
+  position: relative;
+  z-index: 2;
+  max-width: 390px;
+}
+
+.pf__logo {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 43px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pf__tagline {
+  max-width: 360px;
+  margin: 18px 0 0;
+  color: #a8b7d3;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Navigation */
+
+.pf__nav {
+  position: relative;
+  z-index: 2;
+}
+
+.pf__heading {
+  margin: 0 0 20px;
+  color: #f8faff;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.pf__nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf__nav li {
+  margin: 0;
+  padding: 0;
+}
+
+.pf__nav a {
+  display: inline-block;
+  color: #a8b7d3;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.pf__nav a:hover {
+  color: #60a5fa;
+  transform: translateX(4px);
+}
+
+/* Student */
+
+.pf__student {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: stretch;
+  min-width: 0;
+  min-height: 235px;
+  overflow: hidden;
+}
+
+.pf__student-glow {
+  position: absolute;
+  right: 0;
+  bottom: -90px;
+  width: 240px;
+  height: 200px;
+  border-radius: 50%;
+  background: #075cff;
+  filter: blur(85px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.pf__student-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: 255px;
+  object-fit: contain;
+  object-position: center bottom;
+  transform-origin: center bottom;
+  animation: pf-student-appear 0.8s ease-out both;
+  transition: transform 0.35s ease;
+}
+
+.pf__student:hover .pf__student-image {
+  transform: translateY(-4px);
+}
+
+/* Decorative wave marks */
+
+.pf__wave-line {
+  position: absolute;
+  z-index: 2;
+  width: 4px;
+  height: 18px;
+  border-radius: 10px;
+  background: #2878ff;
+  opacity: 0;
+  animation: pf-wave-appear 0.4s ease forwards;
+  pointer-events: none;
+}
+
+.pf__wave-line-one {
+  top: 25px;
+  right: 18%;
+  transform: rotate(28deg);
+  animation-delay: 0.4s;
+}
+
+.pf__wave-line-two {
+  top: 41px;
+  right: 12%;
+  height: 21px;
+  transform: rotate(48deg);
+  animation-delay: 0.55s;
+}
+
+.pf__wave-line-three {
+  top: 62px;
+  right: 9%;
+  height: 18px;
+  transform: rotate(80deg);
+  animation-delay: 0.7s;
+}
+
+/* Centered journey indicator */
+
+.pf__journey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 17px;
+  padding: 9px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.pf__journey p {
+  margin: 0;
+  color: #a8b7d3;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Large blinking green dot */
+
+.pf__status-dot {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00f58a;
+  box-shadow: 0 0 12px rgba(0, 245, 138, 0.85);
+  animation: pf-dot-blink 1.4s ease-in-out infinite;
+}
+
+.pf__status-dot::after {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(0, 245, 138, 0.65);
+  border-radius: 50%;
+  content: "";
+  animation: pf-dot-pulse 1.4s ease-out infinite;
+}
+
+/* Copyright */
+
+.pf__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 40px;
+  padding: 12px 110px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.pf__bottom p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin: 0;
+  color: #8d9bb5;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.pf__bottom strong {
+  color: #f4f7ff;
+  font-weight: 750;
+}
+
+.pf__love {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pf__love span {
+  color: #ff547c;
+  font-size: 15px;
+  animation: pf-heart-beat 1.4s ease-in-out infinite;
+}
+
+/* Back to top */
+
+.pf__back-top {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #76aaff;
+  font-size: 12px;
+  text-decoration: none;
+  transform: translateY(-50%);
+  transition: color 0.25s ease;
+}
+
+.pf__back-top span {
+  font-size: 17px;
+}
+
+.pf__back-top:hover {
+  color: #ffffff;
+}
+
+/* Animations */
+
+@keyframes pf-student-appear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pf-wave-appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pf-dot-blink {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes pf-dot-pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.75);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes pf-heart-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.2);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .pf__top {
+    grid-template-columns: 1fr 0.8fr;
+    gap: 30px;
+  }
+
+  .pf__student {
+    grid-column: 1 / -1;
+    min-height: 220px;
+    max-height: 240px;
+  }
+
+  .pf__student-image {
+    max-width: 300px;
+    height: 235px;
+  }
+
+  .pf__bottom {
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 35px;
+  }
+
+  .pf__back-top {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    transform: none;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+  .pf {
+    padding: 35px 22px 20px;
+  }
+
+  .pf__top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    min-height: auto;
+  }
+
+  .pf__logo {
+    font-size: 39px;
+  }
+
+  .pf__tagline {
+    margin-top: 15px;
+    font-size: 13px;
+  }
+
+  .pf__heading {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .pf__nav ul {
+    gap: 12px;
+  }
+
+  .pf__student {
+    grid-column: auto;
+    min-height: 215px;
+    max-height: 230px;
+    margin-top: -5px;
+  }
+
+  .pf__student-image {
+    max-width: 275px;
+    height: 225px;
+  }
+
+  .pf__journey {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 8px 13px;
+  }
+
+  .pf__journey p {
+    font-size: 11px;
+  }
+
+  .pf__status-dot {
+    width: 11px;
+    height: 11px;
+  }
+
+  .pf__bottom {
+    flex-direction: column;
+    gap: 12px;
+    padding: 17px 0 0;
+  }
+
+  .pf__bottom p {
+    flex-direction: column;
+    gap: 3px;
+    font-size: 11px;
+  }
+
+  .pf__love {
+    justify-content: center;
+  }
+
+  .pf__back-top {
+    position: static;
+    transform: none;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .pf__student-image,
+  .pf__wave-line,
+  .pf__status-dot,
+  .pf__status-dot::after,
+  .pf__love span {
+    animation: none;
+  }
+
+  .pf__wave-line {
+    opacity: 1;
+  }
+
+  .pf__logo,
+  .pf__nav a,
+  .pf__student-image,
+  .pf__back-top {
+    transition: none;
+  }
+}

@@ -164,6 +164,26 @@ public class StudentService {
             student.setGraduationYear(request.graduationYear());
         }
 
+        if (request.bio() != null) {
+            student.setBio(request.bio().trim());
+        }
+
+        if (request.profilePictureUrl() != null) {
+            student.setProfilePictureUrl(request.profilePictureUrl().trim());
+        }
+
+        if (request.linkedinUrl() != null) {
+            student.setLinkedinUrl(request.linkedinUrl().trim());
+        }
+
+        if (request.githubUrl() != null) {
+            student.setGithubUrl(request.githubUrl().trim());
+        }
+
+        if (request.portfolioUrl() != null) {
+            student.setPortfolioUrl(request.portfolioUrl().trim());
+        }
+
         return mapToResponse(student);
     }
 
@@ -197,8 +217,16 @@ public class StudentService {
                 student.getRollNumber(),
                 student.getCgpa(),
                 student.getGraduationYear(),
+                student.getBio(),
+                student.getProfilePictureUrl(),
+                student.getLinkedinUrl(),
+                student.getGithubUrl(),
+                student.getPortfolioUrl(),
                 student.getCreatedAt(),
-                student.getUpdatedAt()
+                student.getUpdatedAt(),
+                student.getCollege().getId(),
+                student.getBranch().getId(),
+                student.getSemester().getId()
         );
     }
 }

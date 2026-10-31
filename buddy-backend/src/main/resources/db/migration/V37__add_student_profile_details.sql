@@ -1,0 +1,6 @@
+ALTER TABLE students
+    ADD COLUMN bio VARCHAR(500) NULL,
+    ADD COLUMN profile_picture_url VARCHAR(2048) NULL,
+    ADD COLUMN linkedin_url VARCHAR(2048) NULL,
+    ADD COLUMN github_url VARCHAR(2048) NULL,
+    ADD COLUMN portfolio_url VARCHAR(2048) NULL;

@@ -1,0 +1,79 @@
+/* Buddy Revision Management — warm coffee palette */
+.revision-management {
+  --revision-ink: #3b2415;
+  --revision-muted: #654b37;
+  --revision-peach: #f9daa5;
+  --revision-tan: #d1b27d;
+  --revision-caramel: #b98658;
+  --revision-copper: #b56930;
+  --revision-terracotta: #9f3f16;
+  --revision-espresso: #6e3c1b;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  color: var(--revision-ink);
+  background: linear-gradient(180deg, #fff9ef 0%, #f9e7c9 40%, #ead0aa 100%);
+  border-radius: 20px;
+}
+.revision-management > h1 { margin: 0 0 8px; font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--revision-ink); }
+.revision-management > p { color: var(--revision-muted); line-height: 1.6; }
+.revision-summary { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 18px; margin: 28px 0; }
+.revision-summary-card { padding: 22px; border: 1px solid rgba(110,60,27,.18); border-radius: 16px; background: var(--revision-peach); box-shadow: 0 5px 18px rgba(70,35,13,.07); }
+.revision-summary-card:nth-child(2) { background: var(--revision-tan); }
+.revision-summary-card:nth-child(3) { background: var(--revision-caramel); }
+.revision-summary-card:nth-child(4) { background: #f2e3ca; }
+.revision-summary-card h2 { margin: 0 0 12px; color: #51331e; font-size: .95rem; font-weight: 650; }
+.revision-summary-card p { margin: 0; color: #301b0d; font-size: 2rem; font-weight: 750; }
+.revision-management > section:not(.revision-summary) { margin: 28px 0; padding: 24px; border: 1px solid #ddbd91; border-radius: 16px; background: var(--revision-peach); }
+.revision-management > section:not(.revision-summary) > h2 { margin-top: 0; color: var(--revision-ink); }
+.revision-management form { display: grid; gap: 10px; }
+.revision-management label { margin-top: 8px; color: var(--revision-ink); font-size: .9rem; font-weight: 650; }
+.revision-management input, .revision-management select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #b98658; border-radius: 9px; background: #fffaf2; color: var(--revision-ink); font: inherit; }
+.revision-management input:disabled, .revision-management select:disabled { background: #f1e5d3; color: #745f4c; cursor: not-allowed; }
+.revision-management input:focus-visible, .revision-management select:focus-visible, .revision-management button:focus-visible { outline: 3px solid #9f3f16; outline-offset: 2px; }
+.revision-management button { min-height: 42px; padding: 10px 16px; border: 0; border-radius: 9px; background: #237b4b; color: #fff; font: inherit; font-weight: 650; cursor: pointer; transition: background .2s ease; }
+.revision-management form > button { margin-top: 14px; }
+.revision-management button:hover:not(:disabled) { background: #17643a; }
+.revision-management button:disabled { cursor: not-allowed; opacity: .55; }
+.revision-management > h2 { margin: 32px 0 16px; padding: 12px 16px; border-radius: 12px; font-size: 1.25rem; color: var(--revision-ink); background: var(--revision-tan); }
+.revision-management > h2:nth-of-type(2) { background: var(--revision-caramel); }
+.revision-management > h2:nth-of-type(3) { background: var(--revision-copper); color: #fff; }
+.revision-card { margin: 12px 0; padding: 20px; border: 1px solid #d1b27d; border-radius: 12px; background: #f8e7ce; box-shadow: 0 4px 16px rgba(75,38,14,.07); }
+.revision-card h3 { margin: 0 0 12px; font-size: 1.05rem; color: var(--revision-ink); }
+.revision-card p { margin: 8px 0; color: #5a402d; overflow-wrap: anywhere; }
+.revision-card-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.revision-card-actions button:last-child { background: var(--revision-terracotta); }
+.revision-card-actions button:last-child:hover:not(:disabled) { background: #7e3010; }
+.revision-management [role='status'] { color: #17643a; }
+.revision-management [role='alert'] { color: #9f2525; }
+@media (max-width: 800px) { .revision-summary { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 640px) {
+  .revision-management { padding: 24px 16px 36px; }
+  .revision-summary { gap: 12px; margin: 20px 0; }
+  .revision-summary-card { padding: 18px; }
+  .revision-summary-card p { font-size: 1.75rem; }
+  .revision-management > section:not(.revision-summary) { padding: 18px; }
+  .revision-card { padding: 16px; }
+  .revision-card-actions { flex-direction: column; }
+  .revision-card-actions button { width: 100%; }
+}
+@media (max-width: 380px) { .revision-summary { grid-template-columns: 1fr; } }
+/* Dashboard workspace integration: retain workspace layout, use warm surfaces in light mode */
+.dashboard-page .revision-management { width: 100%; max-width: none; margin: 0; padding: 0 0 12px; background: transparent; }
+.dashboard-page .revision-management > h1 { display: none; }
+.dashboard-page .revision-management > p { margin-top: 0; }
+/* Dark mode stays aligned with shared dashboard tokens */
+html[data-buddy-theme='dark'] .dashboard-page .revision-management { color: var(--dashboard-ink, #e5eee8); }
+html[data-buddy-theme='dark'] .dashboard-page .revision-summary-card,
+html[data-buddy-theme='dark'] .dashboard-page .revision-management > section:not(.revision-summary),
+html[data-buddy-theme='dark'] .dashboard-page .revision-card,
+html[data-buddy-theme='dark'] .dashboard-page .revision-management > h2 { background: var(--dashboard-surface, #1c2620); border-color: var(--dashboard-border, #303d35); color: var(--dashboard-ink, #e5eee8); }
+html[data-buddy-theme='dark'] .dashboard-page .revision-summary-card h2,
+html[data-buddy-theme='dark'] .dashboard-page .revision-summary-card p,
+html[data-buddy-theme='dark'] .dashboard-page .revision-card h3,
+html[data-buddy-theme='dark'] .dashboard-page .revision-management label { color: var(--dashboard-ink, #e5eee8); }
+html[data-buddy-theme='dark'] .dashboard-page .revision-card p,
+html[data-buddy-theme='dark'] .dashboard-page .revision-management > p { color: var(--dashboard-muted, #a5b4aa); }
+html[data-buddy-theme='dark'] .dashboard-page .revision-management input,
+html[data-buddy-theme='dark'] .dashboard-page .revision-management select { color: var(--dashboard-ink, #e5eee8); background: var(--dashboard-surface, #1c2620); border-color: var(--dashboard-border, #303d35); }
+@media (prefers-reduced-motion: reduce) { .revision-management button { transition: none; } }

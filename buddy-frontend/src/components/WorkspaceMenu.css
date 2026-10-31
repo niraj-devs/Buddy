@@ -1,0 +1,116 @@
+.workspace-menu-toggle {
+    position: fixed;
+    top: 96px;
+    left: 16px;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #d9dee5;
+    border-radius: 11px;
+    background: #fff;
+    color: #111;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+    cursor: pointer;
+}
+.workspace-menu-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.workspace-menu-bars span {
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+    background: #111;
+}
+.workspace-menu-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.workspace-menu-backdrop {
+    position: fixed;
+    inset: 80px 0 0;
+    z-index: 1090;
+    background: rgba(0,0,0,.35);
+}
+.workspace-menu-panel {
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    z-index: 1095;
+    width: min(280px, 85vw);
+    padding: 94px 20px 24px;
+    background: #0c0f0e;
+    color: #fff;
+    box-shadow: 10px 0 35px rgba(0,0,0,.18);
+    transform: translateX(-110%);
+    transition: transform .22s ease;
+    overflow-y: auto;
+}
+.workspace-menu-panel.is-open {
+    transform: translateX(0);
+}
+.workspace-menu-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 23px;
+}
+.workspace-menu-heading button {
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+}
+.workspace-menu-caption {
+    margin-bottom: 12px;
+    color: #9aa69f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.workspace-menu-panel nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.workspace-menu-link {
+    padding: 13px 15px;
+    border-radius: 9px;
+    color: #e4ebe6;
+    text-decoration: none;
+    font-weight: 600;
+}
+.workspace-menu-link:hover,
+.workspace-menu-link.is-active {
+    background: #24382b;
+    color: #a4e6bd;
+}
+.workspace-menu-toggle:focus-visible,
+.workspace-menu-link:focus-visible {
+    outline: 3px solid #3478f6;
+    outline-offset: 3px;
+}
+@media (max-width: 700px) {
+    .workspace-menu-toggle {
+        top: 88px;
+        left: 10px;
+        width: 54px;
+        height: 54px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .workspace-menu-panel {
+        transition: none;
+    }
+}

@@ -53,8 +53,16 @@ public class AdminStudentService {
                 student.getRollNumber(),
                 student.getCgpa(),
                 student.getGraduationYear(),
+                student.getBio(),
+                student.getProfilePictureUrl(),
+                student.getLinkedinUrl(),
+                student.getGithubUrl(),
+                student.getPortfolioUrl(),
                 student.getCreatedAt(),
-                student.getUpdatedAt()
+                student.getUpdatedAt(),
+                student.getCollege().getId(),
+                student.getBranch().getId(),
+                student.getSemester().getId()
         );
     }
 }

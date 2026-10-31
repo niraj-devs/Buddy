@@ -17,6 +17,18 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    @PostMapping("/tasks")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TaskResponse createPersonalTask(
+            Authentication authentication,
+            @Valid @RequestBody CreateTaskRequest request
+    ) {
+        return taskService.createPersonalTask(
+                authentication.getName(),
+                request
+        );
+    }
+
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }

@@ -1,0 +1,743 @@
+
+/* ========================================
+   HOW IT WORKS — BUDDY JOURNEY
+   Green Animated Background
+======================================== */
+
+#how-it-works {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    padding: 110px 36px 100px;
+
+    background: linear-gradient(
+        135deg,
+        #f7fdf8 0%,
+        #effaf2 50%,
+        #f5fcf6 100%
+    );
+
+    color: #1d2733;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ========================================
+   ANIMATED AMBIENT BACKGROUND
+======================================== */
+
+#how-it-works::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            circle at 18% 25%,
+            rgba(34, 197, 94, 0.15),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 82% 65%,
+            rgba(16, 185, 129, 0.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(132, 204, 22, 0.08),
+            transparent 38%
+        );
+
+    pointer-events: none;
+
+    animation: how-ambient-move 14s ease-in-out infinite alternate;
+}
+
+/* Moving Light Sweep */
+
+#how-it-works::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -70%;
+    z-index: -1;
+
+    width: 42%;
+    height: 200%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+
+    transform: rotate(22deg);
+    pointer-events: none;
+
+    animation: how-light-sweep 12s ease-in-out infinite;
+}
+
+/* ========================================
+   FLOATING GREEN PARTICLES
+======================================== */
+
+.how-particle {
+    position: absolute;
+    z-index: 0;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: rgba(34, 197, 94, 0.45);
+
+    box-shadow:
+        0 0 14px rgba(34, 197, 94, 0.22);
+
+    pointer-events: none;
+
+    animation: how-particle-float 9s ease-in-out infinite;
+}
+
+.how-particle:nth-of-type(1) {
+    top: 18%;
+    left: 10%;
+}
+
+.how-particle:nth-of-type(2) {
+    top: 30%;
+    right: 12%;
+    animation-delay: -2s;
+}
+
+.how-particle:nth-of-type(3) {
+    top: 57%;
+    left: 18%;
+    animation-delay: -4s;
+}
+
+.how-particle:nth-of-type(4) {
+    top: 75%;
+    right: 20%;
+    animation-delay: -1s;
+}
+
+.how-particle:nth-of-type(5) {
+    top: 46%;
+    left: 51%;
+    animation-delay: -5s;
+}
+
+/* ========================================
+   MAIN CONTAINER
+======================================== */
+
+.how-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   SECTION HEADING
+======================================== */
+
+.how-heading {
+    max-width: 760px;
+    margin: 0 auto 88px;
+
+    text-align: center;
+}
+
+.how-label {
+    margin: 0 0 18px;
+
+    color: #15803d;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.how-heading h2 {
+    margin: 0 0 20px;
+
+    color: #1d2733;
+
+    font-size: clamp(34px, 4vw, 48px);
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+}
+
+.how-heading > p:last-child {
+    max-width: 650px;
+    margin: 0 auto;
+
+    color: #52635a;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   JOURNEY GRID
+======================================== */
+
+.how-steps {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 56px;
+
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+/* Horizontal Connecting Line */
+
+.how-steps::before {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    top: 59px;
+    left: 16%;
+    right: 16%;
+
+    height: 12px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        90deg,
+        #dcfce7,
+        #bbf7d0,
+        #dcfce7
+    );
+
+    box-shadow:
+        inset 0 1px 3px rgba(22, 101, 52, 0.06);
+}
+
+/* ========================================
+   INDIVIDUAL STEP
+======================================== */
+
+.how-step {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(18px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+
+    transition-delay: calc(var(--step-index, 0) * 140ms);
+}
+
+.how-visible .how-step {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   CIRCULAR ICON BADGES
+======================================== */
+
+.step-visual {
+    position: relative;
+    flex-shrink: 0;
+
+    width: 132px;
+    height: 132px;
+
+    margin-bottom: 30px;
+}
+
+.step-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 132px;
+    height: 132px;
+
+    border: 1px solid #dcefe3;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    box-shadow:
+        0 10px 30px rgba(22, 101, 52, 0.09),
+        0 2px 6px rgba(29, 39, 51, 0.04);
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+/* Icon */
+
+.step-icon {
+    width: 52px;
+    height: 52px;
+
+    color: #16a34a;
+
+    transition: transform 0.25s ease;
+}
+
+/* ========================================
+   HOVER EFFECTS
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .how-step:hover .step-badge {
+        border-color: #86d9a0;
+
+        background: #fbfffc;
+
+        box-shadow:
+            0 14px 36px rgba(22, 101, 52, 0.14),
+            0 3px 8px rgba(29, 39, 51, 0.04);
+    }
+
+    .how-step:hover .step-icon {
+        transform: scale(1.08);
+    }
+}
+
+/* ========================================
+   NUMBER BADGE
+======================================== */
+
+.step-number {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: 4px solid #f5fcf6;
+    border-radius: 50%;
+
+    background: #16a34a;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    box-sizing: content-box;
+}
+
+/* ========================================
+   STEP CONTENT
+======================================== */
+
+.step-label {
+    margin: 0 0 12px;
+
+    color: #15803d;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+}
+
+.how-step h3 {
+    margin: 0 0 16px;
+
+    color: #1d2733;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+}
+
+.how-step p {
+    max-width: 350px;
+    margin: 0;
+
+    color: #52635a;
+
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* ========================================
+   BOTTOM REPEAT MESSAGE
+======================================== */
+
+.how-repeat {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 68px auto 0;
+    padding: 14px 23px;
+
+    border: 1px solid #d8eddf;
+    border-radius: 999px;
+
+    background: rgba(248, 252, 249, 0.88);
+
+    color: #42634c;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    box-sizing: border-box;
+}
+
+.how-repeat svg {
+    flex-shrink: 0;
+    color: #16a34a;
+}
+
+/* ========================================
+   BACKGROUND ANIMATIONS
+======================================== */
+
+@keyframes how-ambient-move {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+
+    100% {
+        transform: translate3d(2%, 2%, 0) scale(1.08);
+    }
+}
+
+@keyframes how-light-sweep {
+    0%,
+    15% {
+        left: -70%;
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    65%,
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+}
+
+@keyframes how-particle-float {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: translate3d(12px, -22px, 0);
+        opacity: 0.8;
+    }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1024px) {
+    #how-it-works {
+        padding: 88px 28px 80px;
+    }
+
+    .how-heading {
+        margin-bottom: 72px;
+    }
+
+    .how-steps {
+        gap: 30px;
+    }
+
+    .step-visual,
+    .step-badge {
+        width: 112px;
+        height: 112px;
+    }
+
+    .how-steps::before {
+        top: 50px;
+        left: 15%;
+        right: 15%;
+
+        height: 12px;
+    }
+
+    .step-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .how-step h3 {
+        font-size: 21px;
+    }
+
+    .how-step p {
+        font-size: 14px;
+    }
+}
+
+/* ========================================
+   MOBILE / VERTICAL JOURNEY
+======================================== */
+
+@media (max-width: 760px) {
+    #how-it-works {
+        padding: 76px 24px 72px;
+    }
+
+    .how-heading {
+        margin-bottom: 54px;
+    }
+
+    .how-heading h2 {
+        font-size: clamp(30px, 5vw, 38px);
+        letter-spacing: -0.9px;
+    }
+
+    .how-heading > p:last-child {
+        font-size: 15px;
+    }
+
+    .how-steps {
+        grid-template-columns: 1fr;
+        gap: 42px;
+
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Vertical Connecting Line */
+
+    .how-steps::before {
+        top: 35px;
+        bottom: 35px;
+
+        left: 34px;
+        right: auto;
+
+        width: 12px;
+        height: auto;
+    }
+
+    /* Step Layout */
+
+    .how-step {
+        display: grid;
+        grid-template-columns: 70px minmax(0, 1fr);
+        column-gap: 22px;
+
+        align-items: start;
+        text-align: left;
+    }
+
+    /* Mobile Circles */
+
+    .step-visual {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+
+        width: 70px;
+        height: 70px;
+
+        margin: 0;
+    }
+
+    .step-badge {
+        width: 70px;
+        height: 70px;
+
+        box-shadow:
+            0 5px 16px rgba(22, 101, 52, 0.08);
+    }
+
+    .step-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .step-number {
+        top: -4px;
+        right: -4px;
+
+        width: 23px;
+        height: 23px;
+
+        border-width: 3px;
+
+        font-size: 9px;
+    }
+
+    /* Mobile Text */
+
+    .step-label {
+        grid-column: 2;
+
+        margin: 3px 0 8px;
+    }
+
+    .how-step h3 {
+        grid-column: 2;
+
+        margin-bottom: 10px;
+
+        font-size: 20px;
+    }
+
+    .how-step p {
+        grid-column: 2;
+
+        max-width: 100%;
+
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .how-repeat {
+        margin-top: 46px;
+    }
+
+    /* Softer Particles on Mobile */
+
+    .how-particle {
+        width: 5px;
+        height: 5px;
+    }
+}
+
+/* ========================================
+   SMALL MOBILE SCREENS
+======================================== */
+
+@media (max-width: 420px) {
+    #how-it-works {
+        padding: 64px 18px;
+    }
+
+    .how-heading {
+        margin-bottom: 46px;
+    }
+
+    .how-heading h2 {
+        font-size: 29px;
+        letter-spacing: -0.7px;
+    }
+
+    .how-heading > p:last-child {
+        font-size: 14px;
+    }
+
+    .how-steps {
+        gap: 36px;
+    }
+
+    .how-step {
+        grid-template-columns: 60px minmax(0, 1fr);
+        column-gap: 17px;
+    }
+
+    .how-steps::before {
+        left: 29px;
+        width: 10px;
+    }
+
+    .step-visual,
+    .step-badge {
+        width: 60px;
+        height: 60px;
+    }
+
+    .step-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .step-number {
+        width: 21px;
+        height: 21px;
+
+        font-size: 8px;
+    }
+
+    .how-step h3 {
+        font-size: 18px;
+    }
+
+    .how-step p {
+        font-size: 13px;
+    }
+
+    .how-repeat {
+        gap: 8px;
+        padding: 12px 15px;
+
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #how-it-works::before,
+    #how-it-works::after,
+    .how-particle {
+        animation: none;
+    }
+
+    .how-step {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .step-badge,
+    .step-icon {
+        transition: none;
+    }
+}

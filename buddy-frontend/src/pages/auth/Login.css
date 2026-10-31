@@ -1,0 +1,868 @@
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.buddy-login {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+    overflow: hidden;
+    color: #fff;
+    background: #07090e;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.buddy-login *,
+.buddy-login *::before,
+.buddy-login *::after {
+    box-sizing: border-box;
+}
+
+.buddy-login button,
+.buddy-login input {
+    font: inherit;
+}
+
+.buddy-login button {
+    cursor: pointer;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.buddy-filter-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.buddy-login-background {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: auto;
+    background: #07090e;
+}
+
+.buddy-water-float {
+    position: absolute;
+    inset: -7%;
+    width: 114%;
+    height: 114%;
+    transform-origin: center;
+}
+
+.buddy-poster-stage {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    overflow: hidden;
+    background: #080b12;
+}
+
+.buddy-poster-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    width: 90%;
+    height: auto;
+    padding: 12px;
+    transform: rotate(-13deg) scale(0.85);
+}
+
+.buddy-poster {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    aspect-ratio: 1.1 / 1;
+    padding: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 9px;
+    background:
+        radial-gradient(
+            ellipse at 85% 20%,
+            rgba(255, 255, 255, 0.14),
+            transparent 35%
+        ),
+        linear-gradient(145deg, var(--poster-color), #080a10 85%);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transform:
+        perspective(700px)
+        rotateX(var(--rotate-x, 0deg))
+        rotateY(var(--rotate-y, 0deg))
+        scale(1);
+    transform-style: preserve-3d;
+    transition:
+        transform 120ms ease-out,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+    will-change: transform;
+    pointer-events: auto;
+}
+
+.buddy-poster:hover {
+    z-index: 5;
+    border-color: rgba(169, 201, 255, 0.7);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+}
+
+.buddy-poster::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.035);
+    content: '';
+    pointer-events: none;
+}
+
+.buddy-poster-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+}
+
+.buddy-poster-mark {
+    color: #a9c9ff;
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.buddy-poster-title {
+    position: relative;
+    z-index: 1;
+    overflow-wrap: anywhere;
+}
+
+.buddy-poster-title p {
+    margin: 0 0 5px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.buddy-poster-title h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(17px, 2.3vw, 29px);
+    font-weight: 900;
+    letter-spacing: -0.8px;
+    line-height: 1;
+}
+
+.buddy-custom-background {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.78) contrast(1.08);
+}
+
+.buddy-water-sheen {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse at 25% 25%,
+            rgba(93, 151, 255, 0.16),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 80% 70%,
+            rgba(15, 100, 160, 0.15),
+            transparent 45%
+        );
+    mix-blend-mode: screen;
+}
+
+.buddy-login-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.68),
+            transparent 22%,
+            transparent 75%,
+            rgba(0, 0, 0, 0.85)
+        ),
+        radial-gradient(
+            ellipse at center,
+            rgba(0, 0, 0, 0.48),
+            rgba(0, 0, 0, 0.83)
+        );
+}
+
+/* =========================
+   BUDDY BRAND
+========================= */
+
+.buddy-login-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    margin: 0;
+    padding: 20px 24px;
+}
+
+.buddy-login-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin: 0;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 160ms ease;
+}
+
+.buddy-login-brand:hover {
+    opacity: 0.85;
+}
+
+.buddy-login-brand-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    color: #c2d9ff;
+    background: rgba(17, 39, 76, 0.65);
+}
+
+.buddy-login-brand-name {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* =========================
+   BACKGROUND CONTROLS
+========================= */
+
+.buddy-background-toggle,
+.buddy-studio-fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 40px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 8px;
+    color: #e8edf6;
+    background: rgba(9, 14, 24, 0.72);
+    font-size: 12px;
+    font-weight: 650;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease;
+}
+
+.buddy-background-toggle:hover,
+.buddy-studio-fab:hover {
+    border-color: rgba(169, 201, 255, 0.55);
+    background: rgba(21, 35, 58, 0.92);
+}
+
+.buddy-background-toggle svg,
+.buddy-studio-fab svg {
+    color: #a9c9ff;
+}
+
+/* =========================
+   LOGIN CARD LAYOUT
+========================= */
+
+.buddy-login-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    flex: 1;
+    place-items: center;
+    padding: 28px 20px 45px;
+}
+
+
+/* =========================
+   LOGIN CARD + BUDDY LOGO WATERMARK
+========================= */
+
+.buddy-signin-card {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 430px;
+    padding: 35px clamp(24px, 4vw, 42px) 30px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 13px;
+    background: rgba(7, 10, 16, 0.84);
+    box-shadow: 0 22px 80px rgba(0, 0, 0, 0.48);
+    backdrop-filter: blur(12px);
+}
+
+
+.buddy-signin-eyebrow {
+    margin: 0 0 10px;
+    color: #a9c9ff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.buddy-signin-heading h1 {
+    margin: 0 0 9px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 750;
+    letter-spacing: -1.1px;
+}
+
+.buddy-signin-heading > p:last-child {
+    margin: 0;
+    color: #aeb9cb;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* =========================
+   STATUS MESSAGE
+========================= */
+
+.buddy-status-message {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 17px;
+    padding: 11px 12px;
+    border: 1px solid rgba(169, 201, 255, 0.2);
+    border-radius: 7px;
+    color: #e1ebff;
+    background: rgba(43, 75, 125, 0.42);
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.buddy-status-message button,
+.buddy-panel-heading > button {
+    display: grid;
+    flex: 0 0 auto;
+    width: 27px;
+    height: 27px;
+    place-items: center;
+    border: 0;
+    border-radius: 5px;
+    color: #d1dbea;
+    background: transparent;
+}
+
+.buddy-status-message button:hover,
+.buddy-panel-heading > button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   FORM FIELDS
+========================= */
+
+.buddy-signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.buddy-floating-field {
+    position: relative;
+    display: block;
+}
+
+.buddy-floating-field > input {
+    display: block;
+    width: 100%;
+    height: 54px;
+    padding: 20px 14px 7px;
+    border: 1px solid #596272;
+    border-radius: 6px;
+    outline: none;
+    color: #fff;
+    background: rgba(21, 25, 33, 0.95);
+    font-size: 14px;
+    transition:
+        border-color 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.buddy-floating-field > input:focus {
+    border-color: #a9c9ff;
+    box-shadow: 0 0 0 2px rgba(125, 170, 255, 0.16);
+}
+
+.buddy-floating-field > span {
+    position: absolute;
+    top: 17px;
+    left: 14px;
+    color: #aeb8c8;
+    font-size: 13px;
+    pointer-events: none;
+    transition:
+        top 140ms ease,
+        font-size 140ms ease;
+}
+
+.buddy-floating-field > input:focus + span,
+.buddy-floating-field > input:not(:placeholder-shown) + span {
+    top: 7px;
+    font-size: 10px;
+}
+
+.buddy-password-field > input {
+    padding-right: 46px;
+}
+
+.buddy-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    transform: translateY(-50%);
+    place-items: center;
+    border: 0;
+    border-radius: 5px;
+    color: #aeb8c8;
+    background: transparent;
+}
+
+.buddy-password-toggle:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* =========================
+   FORM BUTTONS
+========================= */
+
+.buddy-signin-submit,
+.buddy-signin-secondary {
+    width: 100%;
+    min-height: 43px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 750;
+    transition:
+        background 150ms ease,
+        transform 150ms ease;
+}
+
+.buddy-signin-submit {
+    margin-top: 4px;
+    border: 1px solid #477ee0;
+    color: #fff;
+    background: #2868d8;
+}
+
+.buddy-signin-submit:hover {
+    transform: translateY(-1px);
+    background: #3478f6;
+}
+
+.buddy-signin-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #a7b0c0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.buddy-signin-divider span:first-child,
+.buddy-signin-divider span:last-child {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.buddy-signin-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #eef2f9;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.buddy-signin-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   REMEMBER ME & FORGOT LINK
+========================= */
+
+.buddy-signin-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 3px;
+}
+
+.buddy-remember {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #e1e6ef;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.buddy-remember input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.buddy-check-visual {
+    display: grid;
+    width: 17px;
+    height: 17px;
+    place-items: center;
+    border: 1px solid #a7b2c3;
+    border-radius: 3px;
+    color: #101a2b;
+    background: #fff;
+}
+
+.buddy-remember input:not(:checked) + .buddy-check-visual {
+    background: transparent;
+}
+
+.buddy-remember input:focus-visible + .buddy-check-visual {
+    outline: 2px solid #a9c9ff;
+    outline-offset: 3px;
+}
+
+.buddy-forgot-link {
+    padding: 4px 0;
+    border: 0;
+    color: #b6c7e6;
+    background: transparent;
+    font-size: 11px;
+}
+
+.buddy-forgot-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* =========================
+   SIGNUP & DISCLAIMER
+========================= */
+
+.buddy-signup-prompt {
+    margin: 27px 0 0;
+    color: #aeb8c8;
+    font-size: 13px;
+}
+
+.buddy-signup-prompt a {
+    color: #fff;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.buddy-signup-prompt a:hover {
+    text-decoration: underline;
+}
+
+.buddy-signin-disclaimer {
+    margin: 25px 0 0;
+    color: #818da1;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.buddy-login-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px clamp(22px, 5vw, 70px) 21px;
+    color: rgba(225, 233, 245, 0.54);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* =========================
+   BACKGROUND CUSTOMIZATION
+========================= */
+
+.buddy-studio-fab {
+    position: fixed;
+    z-index: 5;
+    right: 18px;
+    bottom: 18px;
+}
+
+.buddy-background-panel {
+    position: fixed;
+    z-index: 6;
+    right: 18px;
+    bottom: 18px;
+    width: min(340px, calc(100vw - 36px));
+    max-height: min(78vh, 620px);
+    padding: 18px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 13px;
+    color: #edf2fb;
+    background: rgba(12, 17, 27, 0.97);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);
+}
+
+.buddy-panel-heading,
+.buddy-panel-heading > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.buddy-panel-heading {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.buddy-panel-heading > div {
+    justify-content: flex-start;
+    font-size: 13px;
+}
+
+.buddy-panel-heading svg {
+    color: #a9c9ff;
+}
+
+.buddy-panel-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 14px 0 9px;
+    color: #aeb9cb;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.buddy-file-input {
+    display: none;
+}
+
+.buddy-panel-actions,
+.buddy-url-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.buddy-panel-primary,
+.buddy-panel-icon,
+.buddy-url-row button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 37px;
+    padding: 0 11px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 6px;
+    color: #fff;
+    background: #285fc0;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.buddy-panel-primary {
+    flex: 1;
+}
+
+.buddy-panel-primary:hover,
+.buddy-url-row button:hover {
+    background: #3478f6;
+}
+
+.buddy-panel-icon {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.buddy-url-form {
+    margin-top: 15px;
+}
+
+.buddy-url-row input {
+    min-width: 0;
+    flex: 1;
+    height: 37px;
+    padding: 0 9px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    outline: none;
+    color: #fff;
+    background: #090d14;
+    font-size: 11px;
+}
+
+.buddy-url-row input:focus {
+    border-color: #a9c9ff;
+}
+
+.buddy-panel-section {
+    margin-top: 16px;
+}
+
+.buddy-mode-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.buddy-mode-options button {
+    min-height: 36px;
+    padding: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 6px;
+    color: #c2ccdb;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 10px;
+}
+
+.buddy-mode-options button.active {
+    border-color: #729de9;
+    color: #fff;
+    background: #254d8b;
+}
+
+.buddy-panel-section input[type="range"] {
+    width: 100%;
+    accent-color: #8bb4ff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (min-width: 1200px) {
+    .buddy-login-content {
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .buddy-login {
+        min-height: 100vh;
+    }
+
+    .buddy-login-header {
+        padding: 17px 16px;
+    }
+
+    .buddy-login-brand-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .buddy-login-brand-name {
+        font-size: 22px;
+    }
+
+    .buddy-background-toggle {
+        min-height: 37px;
+        padding: 0 10px;
+        font-size: 10px;
+    }
+
+    .buddy-login-content {
+        padding: 18px 14px 34px;
+    }
+
+    .buddy-signin-card {
+        max-width: 410px;
+        padding: 29px 23px 25px;
+        border-radius: 10px;
+    }
+
+    .buddy-signin-heading h1 {
+        font-size: 29px;
+    }
+
+    .buddy-login-footer {
+        padding: 12px 17px 18px;
+        font-size: 8px;
+        letter-spacing: 0.8px;
+    }
+
+    .buddy-poster-grid {
+        grid-template-columns: repeat(3, minmax(125px, 1fr));
+    }
+
+    .buddy-studio-fab {
+        right: 10px;
+        bottom: 10px;
+        min-height: 36px;
+    }
+}
+
+@media (max-width: 380px) {
+    .buddy-background-toggle span {
+        max-width: 95px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .buddy-signin-card {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .buddy-signin-options {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .buddy-login-footer span:last-child {
+        display: none;
+    }
+}

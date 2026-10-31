@@ -20,11 +20,11 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(
-        name = "milestone_id",
-        nullable = false,
-        foreignKey = @ForeignKey(name = "fk_tasks_milestone")
+            name = "milestone_id",
+            nullable = true,
+            foreignKey = @ForeignKey(name = "fk_tasks_milestone")
     )
     private Milestone milestone;
 
